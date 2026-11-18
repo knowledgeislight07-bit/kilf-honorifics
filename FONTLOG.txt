@@ -1,0 +1,34 @@
+FONTLOG for KILF Honorifics
+===========================
+
+This file records the history of KILF Honorifics, as the SIL Open Font License recommends
+for fonts derived from other OFL fonts.
+
+Basic font information
+----------------------
+KILF Honorifics is a small companion font holding the Arabic honorific ligatures of Unicode
+(ﷺ ﷻ ﷾ ﷿ ﷲ and U+FD40–U+FD4F, such as ﵁ ﵂ ﵄ ﵀ ﵇). It is meant to sit beside EB Garamond in
+English text, in print and in EPUB, for the publications of Knowledge Is Light Foundation (KILF).
+
+The glyph designs are those of Noto Naskh Arabic. KILF Honorifics changes only their size,
+position and spacing, and the font's line metrics.
+
+ChangeLog
+---------
+1.000 (2026-11-18), Knowledge Is Light Foundation
+- First release. Built by build.py from Noto Naskh Arabic 2.021 (glyphs) and EB Garamond 1.003
+  (line metrics and optical target).
+- 21 honorific ligatures, decomposed from Noto's components and scaled to 85%: ﷺ runs from
+  -0.15 em to +0.75 em, i.e. from just below the baseline to about EB Garamond's ascender.
+- Optical centring: the raḍiya-llāhu ʿanhu family and its neighbours (U+FD40–U+FD4F) are raised
+  75% of the way toward the ink centre of EB Garamond text (+0.21 em). Noto's versions carry
+  most of their ink at or below the baseline and otherwise look sunk beside English.
+- Ascender, descender and line gap copied from EB Garamond, so the font never makes a line
+  taller; this matters in EPUB readers, where a fallback font's metrics can widen line spacing.
+- 30-unit side bearings on each glyph.
+
+Acknowledgements
+----------------
+- Noto Naskh Arabic: The Noto Project Authors, https://github.com/notofonts/arabic (OFL 1.1).
+- EB Garamond: Georg Duffner and Octavio Pardo (OFL 1.1), used only to measure metrics; no
+  EB Garamond glyphs are included.
