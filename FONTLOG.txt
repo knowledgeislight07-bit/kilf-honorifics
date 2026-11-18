@@ -1,8 +1,8 @@
-FONTLOG for KILF Honorifics
-===========================
+FONTLOG for KILF Honorifics and KILF Naskh
+==========================================
 
-This file records the history of KILF Honorifics, as the SIL Open Font License recommends
-for fonts derived from other OFL fonts.
+This file records the history of KILF Honorifics and KILF Naskh, as the SIL Open Font License
+recommends for fonts derived from other OFL fonts.
 
 Basic font information
 ----------------------
@@ -26,6 +26,25 @@ ChangeLog
 - Ascender, descender and line gap copied from EB Garamond, so the font never makes a line
   taller; this matters in EPUB readers, where a fallback font's metrics can widen line spacing.
 - 30-unit side bearings on each glyph.
+
+KILF Naskh
+----------
+KILF Naskh is Noto Naskh Arabic with EB Garamond's line metrics, for Arabic words and phrases
+inside English text. The glyph designs, joining, ligatures and mark positioning are Noto's,
+unchanged.
+
+1.000 (2026-11-18), Knowledge Is Light Foundation
+- First release. Built by build_naskh.py from Noto Naskh Arabic 2.021 and EB Garamond 1.003
+  (line metrics only).
+- Ascender, descender and line gap (hhea, OS/2 typo and win) copied from EB Garamond: 1007 /
+  -298 / 0, in place of Noto's 1069 / -634 / 0. A line holding Arabic is no taller than one
+  without it.
+- Subset to Arabic, Arabic Supplement, Arabic Extended-A, both presentation-form blocks, and
+  the spaces, joiners, direction marks and punctuation used in Arabic text (1201 characters).
+  Arabic Extended-B and -C are left out. All OpenType features are kept; HarfBuzz shapes
+  plain, vocalised and Quranic samples identically to Noto Naskh Arabic.
+- Glyphs at Noto's size (SCALE 1.0). Renamed, with Noto's trademark notice removed and its
+  copyright and designer credits kept.
 
 Acknowledgements
 ----------------

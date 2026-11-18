@@ -11,6 +11,11 @@ version.
 - **EB Garamond's line metrics:** the font never makes a line taller, in print or in EPUB readers.
 - **Licence:** SIL Open Font License 1.1 (`OFL.txt`).
 
+A second font, **KILF Naskh**, covers the rarer case of a whole Arabic word or phrase inside English
+text. It's Noto Naskh Arabic unchanged except for its line metrics, which come from EB Garamond, so
+an Arabic word no longer makes its line taller. Plain and vocalised Arabic sits within EB Garamond's
+line spacing; only stacked Quranic marks come close to the line above.
+
 ## The glyphs
 
 | Glyph | Code point | Meaning |
@@ -43,7 +48,16 @@ The font has no Latin letters. List it **after** your text font, so it is used o
 - **CSS / EPUB:** embed `dist/KILFHonorifics-Regular.ttf` with `@font-face { font-family: "KILF Honorifics"; src: url(KILFHonorifics-Regular.ttf); }`. For EPUB, also wrap each honorific in a span whose `font-family` is set to it, so readers that swap the body font still show it: `<span class="hon" role="img" aria-label="raḍiya-llāhu ʿanhu">﵁</span>`.
 - **Word processors:** install the font. EB Garamond will fall back to it for these characters on most systems; if not, set them in KILF Honorifics by hand.
 
-Arabic text should keep its own Arabic font, which has its own honorifics drawn to match.
+For Arabic words inside English text, add KILF Naskh after it: `("EB Garamond", "KILF Honorifics",
+"KILF Naskh")` in Typst, and the same list in CSS with a second `@font-face` for
+`dist/KILFNaskh-Regular.ttf`. Honorifics still come from KILF Honorifics; other Arabic falls through
+to KILF Naskh. In EPUB, wrap the Arabic in `<span lang="ar">` with `font-family: "KILF Naskh"`. The
+gain is largest in browsers and EPUB readers: in a test at 24 px, a line holding Arabic in Noto Naskh
+grew by 10 px, and by nothing in KILF Naskh. Typst spaces lines by cap height and baseline, so it
+was less affected to begin with.
+
+Arabic paragraphs should keep a real Arabic font such as Noto Naskh Arabic, with its taller line
+spacing and its own honorifics drawn to match.
 
 ## Building
 ```bash
@@ -57,19 +71,25 @@ The settings are at the top of `build.py`:
 - `STRENGTH`: how strongly the raḍiya family is optically centred (0 = not at all, 1 = fully).
 - `SIDE`: spacing either side of each glyph.
 
+KILF Naskh is built separately, by `build_naskh.py`, which writes `dist/KILFNaskh-Regular.ttf`.
+It keeps all of Noto's joining, ligature and mark-positioning rules, and only changes the line
+metrics and names. Its one setting, `SCALE` (default 1.0), resizes the glyphs; try one with
+`.venv/bin/python build_naskh.py --scale 0.9 --out /tmp/test.ttf`.
+
 To use other glyph designs (for example, commissioned calligraphy), replace `sources/NotoNaskhArabic-Regular.ttf` with a font that has the same code points.
 
 ## Releasing
-1. Change the settings or sources, and run `build.py`.
-2. Bump `VERSION` in `build.py` (it goes into the font's name table) and add an entry to `FONTLOG.txt`.
-3. Commit `dist/KILFHonorifics-Regular.ttf` along with the change, and tag the release (e.g. `v1.001`).
-4. Copy the new `dist/KILFHonorifics-Regular.ttf` into each project that uses it. For the publications, that's `fazail/template/fonts/`.
+1. Change the settings or sources, and run `build.py` (or `build_naskh.py` for KILF Naskh).
+2. Bump `VERSION` in that script (it goes into the font's name table) and add an entry to `FONTLOG.txt`.
+3. Commit the font in `dist/` along with the change, and tag the release (e.g. `v1.001`).
+4. Copy the new font from `dist/` into each project that uses it. For the publications, that's `fazail/template/fonts/`.
 
 ## Layout
 ```
-build.py        builds the font
-dist/           the released font
+build.py        builds KILF Honorifics
+build_naskh.py  builds KILF Naskh
+dist/           the released fonts
 sources/        Noto Naskh Arabic (glyphs) and EB Garamond (metrics), with their licences
-OFL.txt         licence for KILF Honorifics
+OFL.txt         licence for both fonts
 FONTLOG.txt     changes, version by version
 ```
