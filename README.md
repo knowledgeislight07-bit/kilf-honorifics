@@ -81,8 +81,11 @@ To use other glyph designs (for example, commissioned calligraphy), replace `sou
 ## Releasing
 1. Change the settings or sources, and run `build.py` (or `build_naskh.py` for KILF Naskh).
 2. Bump `VERSION` in that script (it goes into the font's name table) and add an entry to `FONTLOG.txt`.
-3. Commit the font in `dist/` along with the change, and tag the release (e.g. `v1.001`).
-4. Copy the new font from `dist/` into each project that uses it. For the publications, that's `fazail/template/fonts/`.
+3. Commit the font in `dist/` along with the change, and tag the release. Each font has its own
+   version, so its own tags: `v1.001` for KILF Honorifics, `naskh-v1.001` for KILF Naskh.
+4. Push the commit and tag, and make a GitHub release from the tag with the font attached:
+   `gh release create naskh-v1.001 --title "KILF Naskh 1.001" dist/KILFNaskh-Regular.ttf`.
+5. Copy the new font from `dist/` into each project that uses it. For the publications, that's `fazail/template/fonts/`.
 
 ## Layout
 ```
