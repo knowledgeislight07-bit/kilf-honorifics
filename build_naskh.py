@@ -19,7 +19,7 @@ from fontTools.ttLib.scaleUpem import scale_upem
 
 ROOT = pathlib.Path(__file__).resolve().parent
 SOURCE = ROOT / "sources" / "NotoNaskhArabic-Regular.ttf"   # the font
-METRICS = ROOT / "sources" / "EBGaramond-Regular.ttf"       # line metrics
+METRICS = ROOT / "sources" / "eb-garamond" / "EBGaramond-Regular.ttf"       # line metrics
 OUT = ROOT / "dist" / "KILFNaskh-Regular.ttf"
 
 FAMILY = "KILF Naskh"

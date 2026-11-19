@@ -23,7 +23,7 @@ from fontTools.ttLib import TTFont
 
 ROOT = pathlib.Path(__file__).resolve().parent
 SOURCE = ROOT / "sources" / "NotoNaskhArabic-Regular.ttf"   # the glyphs
-METRICS = ROOT / "sources" / "EBGaramond-Regular.ttf"       # line metrics and optical target
+METRICS = ROOT / "sources" / "eb-garamond" / "EBGaramond-Regular.ttf"       # line metrics and optical target
 OUT = ROOT / "dist" / "KILFHonorifics-Regular.ttf"
 
 FAMILY = "KILF Honorifics"
