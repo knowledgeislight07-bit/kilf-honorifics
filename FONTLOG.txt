@@ -15,6 +15,12 @@ position and spacing, and the font's line metrics.
 
 ChangeLog
 ---------
+1.001 (2026-11-18), Knowledge Is Light Foundation
+- Fix: cap height and x-height (OS/2 sCapHeight, sxHeight) copied from EB Garamond (650 / 400).
+  1.000 left them at 0, and Typst, which spaces lines from the cap height, then fell back to the
+  ascender: every line holding an honorific stood about 0.36 em further from the line above.
+  Glyphs and spacing are otherwise unchanged.
+
 1.000 (2026-11-18), Knowledge Is Light Foundation
 - First release. Built by build.py from Noto Naskh Arabic 2.021 (glyphs) and EB Garamond 1.003
   (line metrics and optical target).
@@ -32,6 +38,10 @@ KILF Naskh
 KILF Naskh is Noto Naskh Arabic with EB Garamond's line metrics, for Arabic words and phrases
 inside English text. The glyph designs, joining, ligatures and mark positioning are Noto's,
 unchanged.
+
+1.001 (2026-11-18), Knowledge Is Light Foundation
+- Fix: cap height and x-height copied from EB Garamond (650 / 400), as in KILF Honorifics 1.001.
+  1.000 left them at 0, which made Typst add about 0.36 em above any line holding Arabic.
 
 1.000 (2026-11-18), Knowledge Is Light Foundation
 - First release. Built by build_naskh.py from Noto Naskh Arabic 2.021 and EB Garamond 1.003

@@ -24,7 +24,7 @@ OUT = ROOT / "dist" / "KILFNaskh-Regular.ttf"
 
 FAMILY = "KILF Naskh"
 PS_NAME = "KILFNaskh-Regular"
-VERSION = "1.000"   # bump on every release, and add a FONTLOG.txt entry
+VERSION = "1.001"   # bump on every release, and add a FONTLOG.txt entry
 SCALE = 1.0         # glyph size relative to Noto; at 1.0 alif (0.67 em) is close to EB Garamond's ascender
 
 # Arabic, Arabic Supplement, Arabic Extended-A (which holds Quranic marks), both presentation-form
@@ -67,6 +67,7 @@ def main():
     fo = font["OS/2"]
     fo.sTypoAscender, fo.sTypoDescender, fo.sTypoLineGap = o.sTypoAscender, o.sTypoDescender, o.sTypoLineGap
     fo.usWinAscent, fo.usWinDescent = o.usWinAscent, o.usWinDescent
+    fo.sCapHeight, fo.sxHeight = o.sCapHeight, o.sxHeight   # Typst spaces lines from the cap height; 0 falls back to the ascender
     fo.fsSelection |= 1 << 7            # USE_TYPO_METRICS
     fo.achVendID = "KILF"
     font["head"].fontRevision = float(VERSION)

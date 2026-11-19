@@ -27,7 +27,7 @@ METRICS = ROOT / "sources" / "EBGaramond-Regular.ttf"       # line metrics and o
 OUT = ROOT / "dist" / "KILFHonorifics-Regular.ttf"
 
 FAMILY = "KILF Honorifics"
-VERSION = "1.000"   # bump on every release, and add a FONTLOG.txt entry
+VERSION = "1.001"   # bump on every release, and add a FONTLOG.txt entry
 SCALE = 0.85      # ﷺ then runs from just below the baseline to about EB Garamond's ascender
 RAISE = 0         # vertical shift for every glyph, in font units (1000 = 1 em)
 SIDE = 30         # extra space either side of each glyph, in font units
@@ -100,6 +100,9 @@ def main():
     fb.setupOS2(
         sTypoAscender=o.sTypoAscender, sTypoDescender=o.sTypoDescender, sTypoLineGap=o.sTypoLineGap,
         usWinAscent=o.usWinAscent, usWinDescent=o.usWinDescent,
+        # cap height and x-height too: Typst sets line spacing from the cap height, and a 0 here
+        # makes it fall back to the ascender, adding about 0.36 em above every line with an honorific
+        sCapHeight=o.sCapHeight, sxHeight=o.sxHeight,
         usWeightClass=400, fsType=0, achVendID="KILF",
         ulUnicodeRange1=1 << 13, ulUnicodeRange2=1 << (63 - 32),   # Arabic, Arabic Presentation Forms-A
     )
