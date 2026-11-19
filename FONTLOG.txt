@@ -1,7 +1,7 @@
-FONTLOG for KILF Honorifics and KILF Naskh
-==========================================
+FONTLOG for KILF Honorifics, KILF Naskh and KILF Garamond
+=========================================================
 
-This file records the history of KILF Honorifics and KILF Naskh, as the SIL Open Font License
+This file records the history of KILF Honorifics, KILF Naskh and KILF Garamond, as the SIL Open Font License
 recommends for fonts derived from other OFL fonts.
 
 Basic font information
@@ -56,8 +56,24 @@ unchanged.
 - Glyphs at Noto's size (SCALE 1.0). Renamed, with Noto's trademark notice removed and its
   copyright and designer credits kept.
 
+KILF Garamond
+-------------
+KILF Garamond is EB Garamond with the honorific ligatures of KILF Honorifics built in, so English
+text needs one font, with no fallback, for both its letters and its honorifics. It is the text face
+of Knowledge Is Light Foundation's publications.
+
+1.000 (2026-11-18), Knowledge Is Light Foundation
+- First release. Built by build_garamond.py from EB Garamond 1.003 (all eight styles: Regular,
+  Italic, Medium, Medium Italic, SemiBold, SemiBold Italic, Bold, Bold Italic) and KILF
+  Honorifics 1.001.
+- The 21 honorific glyphs are added to every style unchanged (same outlines, sizes, optical
+  centring and spacing; upright in the italic styles). EB Garamond's glyphs, kerning, features
+  and metrics are untouched.
+- Renamed to KILF Garamond (family, full and PostScript names); EB Garamond's copyright and
+  designer credits are kept, with a note on the added glyphs. Vendor ID KILF.
+
 Acknowledgements
 ----------------
 - Noto Naskh Arabic: The Noto Project Authors, https://github.com/notofonts/arabic (OFL 1.1).
-- EB Garamond: Georg Duffner and Octavio Pardo (OFL 1.1), used only to measure metrics; no
-  EB Garamond glyphs are included.
+- EB Garamond: Georg Duffner and Octavio Pardo (OFL 1.1). Its metrics are used by KILF
+  Honorifics and KILF Naskh; KILF Garamond is EB Garamond itself, with the honorifics added.

@@ -11,7 +11,9 @@ version.
 - **EB Garamond's line metrics:** the font never makes a line taller, in print or in EPUB readers.
 - **Licence:** SIL Open Font License 1.1 (`OFL.txt`).
 
-A second font, **KILF Naskh**, covers the rarer case of a whole Arabic word or phrase inside English
+**KILF Garamond** is the one to use for English text: it's **EB Garamond with these honorifics built in**, in all eight styles (Regular, Italic, Medium, SemiBold and Bold, each with its italic). Text set in KILF Garamond needs no fallback font for the honorifics, so they can't come out in the wrong font, and the glyphs, sizes and centring are exactly those of KILF Honorifics. KILF Honorifics itself stays available on its own, for pairing with other typefaces.
+
+A third font, **KILF Naskh**, covers the rarer case of a whole Arabic word or phrase inside English
 text. It's Noto Naskh Arabic unchanged except for its line metrics, which come from EB Garamond, so
 an Arabic word no longer makes its line taller. Plain and vocalised Arabic sits within EB Garamond's
 line spacing; only stacked Quranic marks come close to the line above.
@@ -59,6 +61,16 @@ was less affected to begin with.
 Arabic paragraphs should keep a real Arabic font such as Noto Naskh Arabic, with its taller line
 spacing and its own honorifics drawn to match.
 
+## KILF Garamond
+Use it in place of EB Garamond:
+- **Typst:** `#set text(font: "KILF Garamond")`, with `dist/` on the font path.
+- **CSS / EPUB:** embed `dist/KILFGaramond-Regular.ttf`, `-Italic` and `-SemiBold` (or whichever styles you use) as `font-family: "KILF Garamond"`. It's still worth wrapping honorifics in a span with an `aria-label`, so screen readers say them properly.
+
+It's built by `build_garamond.py`, from the EB Garamond styles in `sources/eb-garamond/` and the current `dist/KILFHonorifics-Regular.ttf`. Rebuild it whenever KILF Honorifics changes:
+```bash
+.venv/bin/python build.py && .venv/bin/python build_garamond.py
+```
+
 ## Building
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
@@ -82,7 +94,7 @@ To use other glyph designs (for example, commissioned calligraphy), replace `sou
 1. Change the settings or sources, and run `build.py` (or `build_naskh.py` for KILF Naskh).
 2. Bump `VERSION` in that script (it goes into the font's name table) and add an entry to `FONTLOG.txt`.
 3. Commit the font in `dist/` along with the change, and tag the release. Each font has its own
-   version, so its own tags: `v1.001` for KILF Honorifics, `naskh-v1.001` for KILF Naskh.
+   version, so its own tags: `v1.001` for KILF Honorifics, `naskh-v1.001` for KILF Naskh, `garamond-v1.000` for KILF Garamond.
 4. Push the commit and tag, and make a GitHub release from the tag with the font attached:
    `gh release create naskh-v1.001 --title "KILF Naskh 1.001" dist/KILFNaskh-Regular.ttf`.
 5. Copy the new font from `dist/` into each project that uses it. For the publications, that's `fazail/template/fonts/`.
@@ -91,8 +103,9 @@ To use other glyph designs (for example, commissioned calligraphy), replace `sou
 ```
 build.py        builds KILF Honorifics
 build_naskh.py  builds KILF Naskh
+build_garamond.py  builds KILF Garamond (EB Garamond + the honorifics)
 dist/           the released fonts
-sources/        Noto Naskh Arabic (glyphs) and EB Garamond (metrics), with their licences
-OFL.txt         licence for both fonts
+sources/        Noto Naskh Arabic (honorific glyphs) and EB Garamond (all styles, in eb-garamond/), with their licences
+OFL.txt         licence for all three fonts
 FONTLOG.txt     changes, version by version
 ```
